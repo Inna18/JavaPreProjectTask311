@@ -17,6 +17,7 @@ public class UserService {
         this.userDao = userDao;
     }
 
+
     public User findById(Long id) {
         return userDao.getOne(id);
     }
@@ -33,4 +34,12 @@ public class UserService {
         userDao.deleteById(id);
     }
 
+    public boolean isEmailAlreadyInUse(String email) {
+        boolean emailInDB = true;
+
+        if (userDao.getActiveUserByEmail(email) == null) {
+            emailInDB = false;
+        }
+        return emailInDB;
+    }
 }

@@ -1,5 +1,8 @@
 package com.inna.spring_boot.practicaltask311.model;
 
+import com.inna.spring_boot.practicaltask311.validation.UniqueEmail;
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+@Data
 @Entity
 @Table(name = "users")
 public class User {
@@ -29,68 +33,9 @@ public class User {
     @Min(value = 0, message = "User age should be greater than 0")
     private int age;
 
-    @Column
+    @Column(unique = true)
     @Email(message = "Email should be valid")
+    @UniqueEmail
     private String email;
 
-    public User() {
-    }
-
-    public User(String name, String surname, int age, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }
