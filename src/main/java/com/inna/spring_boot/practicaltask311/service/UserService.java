@@ -1,45 +1,20 @@
 package com.inna.spring_boot.practicaltask311.service;
 
-import com.inna.spring_boot.practicaltask311.dao.UserDao;
 import com.inna.spring_boot.practicaltask311.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    private final UserDao userDao;
+    public User findById(Long id);
 
-    @Autowired
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
-    }
+    public List<User> findAll();
 
+    public void saveUser(User user);
 
-    public User findById(Long id) {
-        return userDao.getOne(id);
-    }
+    public void deleteById(Long id);
 
-    public List<User> findAll() {
-        return userDao.findAll();
-    }
+    User getActiveUserByEmail(String email);
 
-    public void saveUser(User user) {
-        userDao.save(user);
-    }
-
-    public void deleteById(Long id) {
-        userDao.deleteById(id);
-    }
-
-    public boolean isEmailAlreadyInUse(String email) {
-        boolean emailInDB = true;
-
-        if (userDao.getActiveUserByEmail(email) == null) {
-            emailInDB = false;
-        }
-        return emailInDB;
-    }
+    public boolean isEmailAlreadyInUse(String email);
 }
