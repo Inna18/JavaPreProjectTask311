@@ -2,7 +2,6 @@ package com.inna.spring_boot.practicaltask311.controller;
 
 import com.inna.spring_boot.practicaltask311.model.User;
 import com.inna.spring_boot.practicaltask311.service.UserService;
-import com.inna.spring_boot.practicaltask311.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
